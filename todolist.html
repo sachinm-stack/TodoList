@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo App</title>
+    <link rel="stylesheet" href="/tdolist.css">
+</head>
+<body>
+    <h2>TODO LIST</h2>
+
+    <div class="div">
+        <input id="todo" type="text">
+        <button id="submit">Add</button>
+    </div>
+
+    <h3>Pending Tasks</h3>
+    <ul id="todoList"></ul>
+
+    <h3>Completed Tasks</h3>
+    <ul id="doneList"></ul>
+
+<script>
+    let submit = document.getElementById('submit');
+    let addTask = document.getElementById('todo');
+    let todoList = document.getElementById('todoList');
+    let doneList = document.getElementById('doneList');
+
+    let list = [];
+
+    submit.addEventListener('click', function () {
+
+        if (addTask.value.trim() !== '') {
+
+            let id = list.length;
+            list.push(addTask.value);
+
+            todoList.innerHTML += 
+            '<li id="'+id+'">' +
+            addTask.value +
+            ' <button onclick="complete('+id+')">Complete</button></li>';
+
+            addTask.value = '';
+        }
+    });
+
+    function complete(id) {
+        doneList.innerHTML += '<li>' + list[id] + '</li>';
+        document.getElementById(id).style.display = "none";
+    }
+</script>
+
+</body>
+</html>
